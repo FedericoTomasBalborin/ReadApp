@@ -86,7 +86,7 @@ Antes de iniciar el proyecto, asegurate de tener instalado:
 ### 1. Clonar el repositorio
 
 ```bash
-git clone <url-del-repositorio>
+git clone https://github.com/FedericoTomasBalborin/ReadApp
 cd ReadApp
 ```
 
@@ -167,37 +167,12 @@ Este repositorio incluye documentación técnica y de dominio en distintas secci
 
 Este proyecto fue desarrollado como trabajo universitario y representa una integración completa de frontend, backend, infraestructura y bases de datos.
 
-### Equipo / contribuyentes
+### Equipo / Github
 
-- [Nombre del estudiante o equipo principal]
-- [Nombre de colaboradores]
-- [Profesor / tutor / docente a cargo]
+- Federico Balborin (FedericoTomasBalborin)
+- Martin del Lojo (martinmdl)
+- Martin Benedetto (TinchoBtt)
+- Franco Demaino (FrancoDemaino)
+- Ivan Miranda (ivan1299)
 
-Si querés dejarlo más formal, podés completar la sección con:
-
-- Backend / arquitectura: [nombre]
-- Frontend / UX: [nombre]
-- Base de datos / infraestructura: [nombre]
-- Documentación / testing: [nombre]
-
-## Licencia
-
-Este proyecto se distribuye bajo la licencia [MIT / Apache 2.0 / licencia académica], según corresponda.
-
-## Contacto
-
-Para consultas, mejoras o colaboración:
-
-- [Email de contacto]
-- [GitHub del proyecto o del equipo]
-- [LinkedIn o perfil adicional]
-
-## Estado del proyecto
-
-- Versión actual: [0.1.0]
-- Estado: [en desarrollo / finalizado / demo]
-- Deployment: [si estuvo desplegado, indicar URL o entorno de prueba]
-
----
-
-ReadApp es un proyecto académico orientado a la integración real de tecnologías backend y frontend en un entorno de aplicación full-stack con persistencia distribuida y caché.
+- Profesores: Fernando Dodino (fdodino), Juan Contardo (Juancete)
