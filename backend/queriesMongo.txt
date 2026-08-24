@@ -1,0 +1,72 @@
+Query 1 Saber qué libro es el más clickeado.
+[
+  {
+    "$group": {
+      "_id": "$idBook",
+      "clicks": {
+        "$sum": 1
+      }
+    }
+  },
+  {
+    "$sort": {
+      "clicks": -1
+    }
+  },
+  {
+    "$limit": 1
+  },
+  {
+    "$addFields": {
+      "bookObjectId": {
+        "$toObjectId": "$_id"
+      }
+    }
+  },
+  {
+    "$lookup": {
+      "from": "libros",
+      "localField": "bookObjectId",
+      "foreignField": "_id",
+      "as": "book"
+    }
+  },
+  {
+    "$unwind": "$book"
+  }
+]
+
+Query 2: Saber cuántos libros son del tipo coleccionables.
+[
+  {
+    "$match": {
+      "_class": { "$regex": "CollectibleBook$" }
+    }
+  },
+  {
+    "$count": "totalColeccionables"
+  }
+]
+
+Query 3 Saber qué libros tienen más de 4 puntos de calificación.
+{ "calification": { "$gt": 4 } }
+
+Query 4 Saber qué libros tienen al menos 3 reservas activas.
+{
+  "$expr": {
+    "$gte": [
+      { "$size": "$reservationDates" },
+      3
+    ]
+  }
+}
+
+Query 5 Saber qué libros tienen todos las reservas cumplidas (ya devolvieron los libros).
+{
+  "$expr": {
+    "$and": [
+      { "$eq": [ { "$size": "$reservationDates" }, 0 ] },
+      { "$gt": [ "$reservationsCount", 0 ] }
+    ]
+  }
+}

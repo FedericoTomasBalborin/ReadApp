@@ -1,0 +1,87 @@
+name: phm-proyecto
+
+services:
+#  postgres:
+#    image: postgres:16-alpine
+#    container_name: phm-postgres
+#    environment:
+#      POSTGRES_DB: "phm"
+#      POSTGRES_USER: ${POSTGRES_USER}
+#      POSTGRES_PASSWORD: ${POSTGRES_PSW}
+#    ports:
+#      - "5432:5432"
+#    volumes:
+#      - postgres_data:/var/lib/postgresql/data
+
+  db:
+    image: postgres:18-alpine
+    container_name: phm-postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PSW}
+    ports:
+      - '5435:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    restart: always
+    ports:
+      - "5050:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@phm.edu.ar
+      PGADMIN_DEFAULT_PASSWORD: admin
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+#  pgadmin:
+#    image: dpage/pgadmin4:latest
+#    container_name: phm-pgadmin
+#    environment:
+#      PGADMIN_DEFAULT_EMAIL: admin@gmail.com
+#      PGADMIN_DEFAULT_PASSWORD: admin123
+#      PGADMIN_CONFIG_SERVER_MODE: "False"
+#    ports:
+#      - "5050:80"
+#    depends_on:
+#      - postgres
+#    volumes:
+#      - pgadmin_data:/var/lib/pgadmin
+#      - ./pgadmin-servers.json:/pgadmin4/servers.json:ro
+
+  redis-books:
+    container_name: redis-books
+    hostname: redis
+    image: redis:7
+    ports:
+      - "6379:6379"
+
+  redisinsight:
+    container_name: redis-insight-books
+    image: redis/redisinsight:latest
+    ports:
+      - "5540:5540"
+    depends_on:
+      - redis-books
+
+#  mongo:
+#    image: mongo:latest
+#    container_name: phm-mongo-books
+#    hostname: host-mongo
+#    ports:
+#      - "27019:27017"
+#    volumes:
+#      - mongo_data:/data/db
+#      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: capo
+#      MONGO_INITDB_ROOT_PASSWORD: eyra
+#      MONGO_INITDB_DATABASE: libros
+
+
+volumes:
+  db:
+  pgadmin-data:

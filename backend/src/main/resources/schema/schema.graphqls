@@ -1,0 +1,55 @@
+type Query {
+    ratingAnalysis: [RatingByBookType]!
+    usersKarmaTop5: [UsersKarmaTop5Type]!
+    conversionRate: [BookConversions]!
+    recentActivityFeed: [RecentActivity]!
+    catalogHealthStatus: CatalogHealthStatus!
+}
+
+type BookConversions {
+    idBook: String!
+    clickCount: Int!
+    reservationCount: Int!
+    conversionRate: Float!
+}
+
+type UsersKarmaTop5Type {
+    username: String!
+    bibliokarma: Int!
+}
+
+type RatingByBookType {
+    bookType: BookType!
+    averageRating: Float!
+}
+
+type RecentActivity {
+    date: String!
+    eventType: EventType!
+    user: User
+}
+
+type CatalogHealthStatus {
+    neverBeenReserved : Int!
+    reservedToday : Int!
+    availableWithFutureReservations : Int!
+    availableWithPastReservation : Int!
+    total : Int!
+}
+
+enum BookType {
+    COMMON
+    DEDICATION
+    COLLECTIBLE
+}
+
+enum EventType {
+    BOOK_CREATED
+    RESERVATION_CREATED
+}
+
+type User {
+    id: ID!
+    name: String!
+    email: String!
+}
